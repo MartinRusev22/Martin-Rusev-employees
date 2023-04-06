@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot & Thymeleaf File Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2>Upload File</h2>
+                <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                    <label class="text-danger" th:text="${error}" th:if="${error != null}"></label>
+                    <div class="form-group">
+                        <input type="file" name="file" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload File</button>
+                </form>
+<!--                <form method="get" th:action="@{/show}" th:object="${selected}">-->
+<!--                    <select  th:field="*{firstEmpl}" class="form-control" id="dropDownList" >-->
+<!--                        <option value="0">Employee #1</option>-->
+<!--                        <option th:each="option : ${options}" th:value="${option}" th:text="${option}" ></option>-->
+<!--                    </select>-->
+<!--                    <select th:field="*{secondEmpl}" class="form-control" id="dropDownList2" >-->
+<!--                        <option value="0">Employee#2</option>-->
+<!--                        <option th:each="option : ${options}" th:value="${option}" th:text="${option}" ></option>-->
+<!--                    </select>-->
+<!--                    <button type="submit" class="btn btn-primary">Show Result</button>-->
+
+<!--                    <table class="table table-bordered " aria-setsize="100px" >-->
+<!--                        <thead class="table-dark">-->
+<!--                        <tr>-->
+<!--                            <th scope="col" >EmployeeId#1</th>-->
+<!--                            <th scope="col">EmployeeId#2</th>-->
+<!--                            <th scope="col">ProjectId</th>-->
+<!--                            <th scope="col">Days worked</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody class="table-success">-->
+<!--                        <tr th:each="rec : ${listOfRecords}">-->
+<!--                            <td th:text="${rec.key[0]}"></td>-->
+<!--                            <td th:text="${rec.key[1]}"></td>-->
+<!--                            <td th:text="${rec.key[2]}"></td>-->
+<!--                            <td th:text="${rec.value}"></td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
