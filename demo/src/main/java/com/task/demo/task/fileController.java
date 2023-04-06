@@ -33,7 +33,6 @@ public class fileController {
 
             return "table.html";
         } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
             return "index.html";
         }
     }
@@ -47,7 +46,6 @@ public class fileController {
             model.addAttribute("listOfRecords",listOfRecords);
             return "table.html";
         } catch (Exception e) {
-            model.addAttribute("emptyList", e.getMessage());
             return "table.html";
         }
     }
