@@ -118,20 +118,28 @@ public class fileServiceImpl implements fileService {
 
     private List<LocalDate> parseDate(String[] firstRec, String[] secondRec) {
         List<LocalDate> parsedDates = new ArrayList<>();
-        List<SimpleDateFormat>formats=new ArrayList<>();
+        List<SimpleDateFormat> formats = new ArrayList<>();
         SimpleDateFormat formatA = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatB = new SimpleDateFormat("dd-MM-yyyy");
-//        SimpleDateFormat formatC = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat formatC = new SimpleDateFormat("MM-dd-yyyy");
         formats.add(formatA);
         formats.add(formatB);
-//        formats.add(formatC);
+        formats.add(formatC);
         try {
-            Date date=null;
-            for(int i =0;i<formats.size();i++)
-            {
+            Date date = null;
+            for (int i = 0; i < formats.size(); i++) {
                 date = formats.get(i).parse(firstRec[FIRST_DATE_FROM]);
-                if(date.getYear()+1900>2000)
-                {break;}
+                if (date.getYear() + 1900 > 2000) {
+                    int yearDate = 0;
+                    if (i == 0) {
+                        yearDate = Integer.parseInt(firstRec[FIRST_DATE_FROM].substring(0, 4));
+                    } else {
+                        yearDate = Integer.parseInt(firstRec[FIRST_DATE_FROM].substring(6, 10));
+                    }
+                    if (date.getYear() + 1900 == yearDate) {
+                        break;
+                    }
+                }
             }
             LocalDate aFrom = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             aFrom.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -143,13 +151,20 @@ public class fileServiceImpl implements fileService {
         }
         if (!firstRec[3].equalsIgnoreCase("null")) {
             try {
-                Date date=null;
-                for(int i =0;i<formats.size();i++)
-                {
+                Date date = null;
+                for (int i = 0; i < formats.size(); i++) {
                     date = formats.get(i).parse(firstRec[FIRST_DATE_TO]);
-                    long year=date.getYear()+1900;
-                    if(date.getYear()+1900>2000)
-                    {break;}
+                    if (date.getYear() + 1900 > 2000) {
+                        int yearDate = 0;
+                        if (i == 0) {
+                            yearDate = Integer.parseInt(firstRec[FIRST_DATE_TO].substring(0, 4));
+                        } else {
+                            yearDate = Integer.parseInt(firstRec[FIRST_DATE_TO].substring(6, 10));
+                        }
+                        if (date.getYear() + 1900 == yearDate) {
+                            break;
+                        }
+                    }
                 }
                 LocalDate aTo = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 aTo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -163,12 +178,20 @@ public class fileServiceImpl implements fileService {
             parsedDates.add(LocalDate.now());
         }
         try {
-            Date date=null;
-            for(int i =0;i<formats.size();i++)
-            {
+            Date date = null;
+            for (int i = 0; i < formats.size(); i++) {
                 date = formats.get(i).parse(secondRec[SECOND_DATE_FROM]);
-                if(date.getYear()+1900>2000)
-                {break;}
+                if (date.getYear() + 1900 > 2000) {
+                    int yearDate = 0;
+                    if (i == 0) {
+                        yearDate = Integer.parseInt(secondRec[SECOND_DATE_FROM].substring(0, 4));
+                    } else {
+                        yearDate = Integer.parseInt(secondRec[SECOND_DATE_FROM].substring(6, 10));
+                    }
+                    if (date.getYear() + 1900 == yearDate) {
+                        break;
+                    }
+                }
             }
             LocalDate bFrom = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             bFrom.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -180,12 +203,20 @@ public class fileServiceImpl implements fileService {
         }
         if (!secondRec[3].equalsIgnoreCase("null")) {
             try {
-                Date date=null;
-                for(int i =0;i<formats.size();i++)
-                {
+                Date date = null;
+                for (int i = 0; i < formats.size(); i++) {
                     date = formats.get(i).parse(secondRec[SECOND_DATE_TO]);
-                    if(date.getYear()+1900>2000)
-                    {break;}
+                    if (date.getYear() + 1900 > 2000) {
+                        int yearDate = 0;
+                        if (i == 0) {
+                            yearDate = Integer.parseInt(secondRec[SECOND_DATE_TO].substring(0, 4));
+                        } else {
+                            yearDate = Integer.parseInt(secondRec[SECOND_DATE_TO].substring(6, 10));
+                        }
+                        if (date.getYear() + 1900 == yearDate) {
+                            break;
+                        }
+                    }
                 }
                 LocalDate bTo = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 bTo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
